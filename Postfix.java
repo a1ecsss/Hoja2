@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Postfix {
     private Stack<Integer> stack = new Stack<>();
     
@@ -12,6 +14,11 @@ public class Postfix {
         }
         if(this.stack.isEmpty()){return 0;}
         else{return stack.pop();}
+    }
+
+    public int operateFile(String file) throws IOException {
+        String fileContent = Reader.readFile(file);
+        return operate(fileContent);
     }
 
     private void sum(){
