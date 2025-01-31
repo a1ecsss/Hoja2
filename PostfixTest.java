@@ -1,13 +1,15 @@
-/* import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import Postfix;
+import main.Postfix;
 
 class PostfixTest {
     private Postfix postfix;
 
     @BeforeEach
     void setUp() {
-        postfix = new Postfix(); 
+        postfix = new Postfix();  // Usa tu implementación de Postfix sin cambios
     }
 
     @Test
@@ -42,14 +44,22 @@ class PostfixTest {
 
     @Test
     void testOperacionVacia() {
-        assertEquals(0, postfix.operate(""));
+        assertThrows(IllegalArgumentException.class, () -> {
+            postfix.operate("");
+        });
     }
 
     @Test
     void testOperacionInvalida() {
-        assertThrows(IllegalStateException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             postfix.operate("5 +");
         });
     }
+
+    @Test
+    void testDivisionPorCero() {
+        assertThrows(ArithmeticException.class, () -> {
+            postfix.operate("4 0 /");
+        });
+    }
 }
- */
